@@ -5,7 +5,6 @@ const nodemailer = require("nodemailer");
 const bcrypt =  require("bcrypt");
 const { Workbook } = require('exceljs');
 
-
 const app = express();
 const port = 3000;
 
@@ -263,8 +262,6 @@ app.get('/query/download', async (req, res) => {
         res.redirect("/query");
     }
 });
-
-
 
 app.listen(port, ()=>{
     console.log(`port no : ${port}`);
