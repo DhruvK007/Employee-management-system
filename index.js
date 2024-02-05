@@ -4,6 +4,7 @@ const pg = require("pg");
 const nodemailer = require("nodemailer");
 const bcrypt =  require("bcrypt");
 const { Workbook } = require('exceljs');
+require('dotenv').config();
 
 
 const app = express();
@@ -12,8 +13,8 @@ const port = 3000;
 const db = new pg.Client({
     user:"postgres",
     host:"localhost",
-    database:"Employee",
-    password:"Ayush#945",
+    database:process.env.DBNAME,
+    password:process.env.DBPASS,
     port:5432,
 });
 db.connect();
@@ -152,14 +153,14 @@ async function otp(){
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: "apnahotel368@gmail.com",
-            pass: "ygdv disc goyp njhf"
+            user: process.env.EMAIL,
+            pass: process.env.PASSWORD
         }
     });
     
     const mailOptions = {
-        from: "apnahotel368@gmail.com",
-        to: "ayushkalathiya50@gmail.com",
+        from: process.env.EMAIL,
+        to: process.env.RecEMAIL,
         subject: 'OTP',
         text: "Your OTP is "+ OTP
     };
